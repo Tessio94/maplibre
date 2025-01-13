@@ -1,0 +1,199 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: "Roboto", sans-serif;
+}
+
+#map {
+}
+
+#pauk,
+#oil {
+	width: 40px;
+	height: 40px;
+}
+
+/* ---------------popup styling-------------- */
+.maplibregl-popup-content {
+	border-radius: 10px !important;
+	box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.1) !important;
+	padding: 0px !important;
+	height: fit-content !important;
+}
+
+.maplibregl-popup-close-button {
+	display: none !important;
+}
+
+.custom-popup {
+	height: 100%;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	/* padding: 15px 10px; */
+}
+
+.custom-popup h4 {
+	width: 100%;
+	text-align: center;
+	font-size: 16px;
+	text-transform: uppercase;
+	font-weight: 600;
+	color: white;
+	background-color: red;
+	border-top-right-radius: 10px;
+	border-top-left-radius: 10px;
+	padding: 10px 15px;
+}
+.custom-popup p {
+	font-size: 18px;
+	color: rgb(112, 112, 112);
+	padding: 10px 15px;
+}
+
+.custom-popup div {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 10px;
+}
+
+.custom-popup div p:nth-child(1) {
+	align-self: stretch;
+	display: flex;
+	align-items: center;
+	font-size: 14px;
+	font-weight: 600;
+	color: white;
+	border-bottom-left-radius: 10px;
+}
+
+.custom-popup div p:nth-child(2) {
+	font-size: 14px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+	gap: 2px;
+	flex-grow: 1;
+}
+
+/* ---------------div content styling-------------- */
+.zona_container {
+	position: absolute;
+	right: 10%;
+	top: 20%;
+	width: 300px;
+	height: fit-content;
+	background-color: white;
+	display: none;
+}
+
+.zona_container > :first-child {
+	border: 1px solid rgb(116, 114, 114);
+	padding: 18px;
+}
+
+.zona_container div:first-child h3 {
+	font-size: 24px;
+	font-weight: normal;
+	text-transform: uppercase;
+}
+
+.zona_container div:first-child p {
+	font-size: 14px;
+	font-weight: normal;
+	text-transform: uppercase;
+}
+
+.zona_container .cijena {
+	font-size: 16px;
+	padding: 15px;
+	text-transform: uppercase;
+	border-bottom: 1px solid rgba(116, 114, 114, 0.342);
+}
+
+.zona_container .cijena span {
+	color: #575656cc;
+}
+
+.zona_container .tarifa {
+	display: flex;
+	font-size: 16px;
+	text-transform: uppercase;
+	border-bottom: 1px solid rgba(116, 114, 114, 0.342);
+}
+
+.zona_container .tarifa p {
+	flex-basis: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 15px;
+	font-size: 16px;
+	text-transform: uppercase;
+	color: red;
+	font-weight: 600;
+}
+
+.zona_container .tarifa p:nth-child(1) {
+	border-right: 1px solid rgba(116, 114, 114, 0.342);
+}
+
+.zona_container .tarifa p:nth-child(2) {
+	flex-direction: column;
+}
+
+.zona_container .tarifa p:nth-child(2) span {
+	color: #575656cc;
+}
+
+.zona_container .info {
+	padding: 15px;
+	font-size: 14px;
+	border-bottom: 1px solid rgba(116, 114, 114, 0.342);
+}
+
+.zona_container .sms {
+	padding: 15px;
+	font-size: 14px;
+	display: flex;
+	align-items: center;
+	gap: 20px;
+}
+
+.zona_container .sms > div {
+	display: flex;
+	align-items: center;
+	font-size: 12px;
+}
+
+.zona_container .sms > div > p {
+	font-size: 12px;
+}
+
+.zona_container .sms > p:first-of-type {
+	font-size: 18px;
+	font-weight: 600;
+}
+
+.zona_container .phoneInfo {
+	padding: 15px;
+	font-size: 14px;
+	display: flex;
+	align-items: center;
+}
+
+.zona_container .ravnice {
+	padding: 15px;
+	font-size: 14px;
+	color: #575656cc;
+}
+
+.active {
+	display: block;
+}

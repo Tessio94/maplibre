@@ -1,0 +1,49 @@
+{
+	"informacije": [
+		{
+			"backgroundColor": "#0051ff",
+			"textColor": "#fff",
+			"zona": 1,
+			"parkirnaMjesta": 320,
+			"cijena": "0,80 €",
+			"ljetnaCijena": "1,60 €",
+			"info": "Parking se naplaćuje radnim danima od 8:00 do 16:00 sati, subotom od 8:00 do 14:00 sati. Besplatno parkiranje nedjeljom i praznicima.",
+			"broj": "708231",
+			"brojInfo": ""
+		},
+
+		{
+			"backgroundColor": "#f2ef13",
+			"textColor": "#575656",
+			"zona": 2,
+			"parkirnaMjesta": 1030,
+			"cijena": "0,80 €",
+			"ljetnaCijena": "1,60 €",
+			"info": "Parking se naplaćuje radnim danima od 8:00 do 16:00 sati, subotom od 8:00 do 14:00 sati. Besplatno parkiranje nedjeljom i praznicima.",
+			"broj": "708232",
+			"brojInfo": ""
+		},
+		{
+			"backgroundColor": "#96249c",
+			"textColor": "#fff",
+			"zona": 3,
+			"parkirnaMjesta": 252,
+			"cijena": "0,40 €",
+			"ljetnaCijena": "",
+			"info": "Parking se naplaćuje radnim danima od 8:00 do 16:00 sati, subotom od 8:00 do 14:00 sati. Besplatno parkiranje nedjeljom i praznicima.",
+			"broj": "708233",
+			"brojInfo": "Nije moguće na zatvorenom parkiralištu"
+		},
+		{
+			"backgroundColor": "#0da32e",
+			"textColor": "#fff",
+			"zona": 4,
+			"parkirnaMjesta": 220,
+			"cijena": "0,30 €",
+			"ljetnaCijena": "",
+			"info": "Parking se naplaćuje radnim danima od 8:00 do 16:00 sati, subotom od 8:00 do 14:00 sati. Besplatno parkiranje nedjeljom i praznicima.",
+			"broj": "",
+			"brojInfo": ""
+		}
+	]
+}
