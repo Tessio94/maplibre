@@ -10,8 +10,8 @@
 
 #pauk,
 #oil {
-	width: 40px;
-	height: 40px;
+	width: 60px;
+	height: 60px;
 }
 
 /* ---------------popup styling-------------- */
@@ -93,12 +93,15 @@
 	width: 300px;
 	height: fit-content;
 	background-color: white;
+	border-radius: 10px;
 	display: none;
 }
 
 .zona_container > :first-child {
 	border: 1px solid rgb(116, 114, 114);
 	padding: 18px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
 }
 
 .zona_container div:first-child h3 {
@@ -201,9 +204,140 @@
 	display: block;
 }
 
-/* ----------------allowing hover instead of clikc------------ */
-#pauk,
-#oil,
-.sms_marker {
+/* ---------------message info--------------------------------- */
+.sms_container {
+	position: absolute;
+	bottom: 10%;
+	left: 5%;
+	right: 5%;
+	display: flex;
 	pointer-events: none;
+}
+
+.message_info {
+	height: 60px;
+	width: fit-content;
+	display: flex;
+	align-items: center;
+	border-radius: 10px;
+	background-color: white;
+	padding: 10px;
+	cursor: pointer;
+	font-size: 14px;
+	z-index: 100;
+	pointer-events: auto;
+	transition: all 0.5s ease;
+}
+
+.message_info:hover {
+	border-top-right-radius: 0px;
+	border-bottom-right-radius: 0px;
+}
+
+.message_info:hover + .numbers_info {
+	transform: translateX(0px);
+	opacity: 1;
+}
+
+.numbers_info {
+	/* position: absolute;
+	bottom: 10%;
+	left: calc(5% + 150px); */
+	height: 60px;
+	display: flex;
+	align-items: center;
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
+	border-left: 1px solid rgba(163, 163, 163, 0.788);
+	background-color: white;
+	cursor: pointer;
+	gap: 15px;
+	opacity: 0;
+	transform: translateX(-150px);
+	z-index: 10;
+	transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.numbers_info p {
+	font-size: 14px;
+	color: black;
+	padding: 0px 0px 0px 15px;
+}
+
+.numbers_info ul {
+	display: flex;
+	align-items: center;
+	list-style: none;
+	align-self: stretch;
+}
+.numbers_info ul li {
+	display: flex;
+	align-items: center;
+	text-align: center;
+	padding: 0px 5px;
+	font-size: 14px;
+	color: white;
+	align-self: stretch;
+	border: 1px solid rgba(163, 163, 163, 0.788);
+}
+
+.numbers_info ul li:nth-of-type(1) {
+	background-color: #ba0909;
+}
+.numbers_info ul li:nth-of-type(2) {
+	background-color: #0051ff;
+}
+.numbers_info ul li:nth-of-type(3) {
+	background-color: #f2af13;
+}
+.numbers_info ul li:nth-of-type(4) {
+	background-color: #96249c;
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
+}
+
+/* ---------------OIl info--------------------------------- */
+#6:first-child {
+	background-color: rgb(53, 53, 53);
+	color: white;
+	text-align: center;
+}
+/* ---------------Pauk info--------------------------------- */
+
+@media only screen and (max-width: 630px) {
+	.numbers_info {
+		flex-direction: column;
+		gap: 0px;
+	}
+	.numbers_info p {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	.numbers_info ul li:nth-of-type(4) {
+		border-top-right-radius: 0px;
+	}
+}
+
+@media only screen and (max-width: 450px) {
+	.message_info {
+		padding: 5px;
+	}
+
+	.numbers_info p {
+		display: none;
+	}
+
+	.numbers_info ul {
+		flex-grow: 1;
+	}
+
+	.numbers_info ul li {
+		font-size: 12px;
+		padding: 0px;
+	}
+
+	.numbers_info ul li:nth-of-type(4) {
+		border-top-right-radius: 10px;
+	}
 }

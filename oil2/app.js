@@ -241,13 +241,131 @@ async function init() {
 	});
 
 	/*--------------adding oil and pauk markers------------------------*/
-	new maplibregl.Marker({ element: oil })
-		.setLngLat([15.228197268489417, 44.11298363660206])
-		.addTo(map);
+	// new maplibregl.Marker({ element: oil })
+	// 	.setLngLat([15.228197268489417, 44.11298363660206])
+	// 	.addTo(map);
 
-	new maplibregl.Marker({ element: pauk })
-		.setLngLat([15.231462526517115, 44.10868140866365])
-		.addTo(map);
+	// new maplibregl.Marker({ element: pauk })
+	// 	.setLngLat([15.231462526517115, 44.10868140866365])
+	// 	.addTo(map);
+
+	/*  pauk marker click functionality */
+	const paukGeoData = await fetchMarkerData("./data/aparati/pauk.json");
+
+	const paukEl = document.createElement("img");
+	paukEl.src = "./icons/towtruck.png";
+
+	paukEl.onload = () => {
+		map.addImage("pauk-marker", paukEl);
+
+		map.addSource("markerPauk", {
+			type: "geojson",
+			data: paukGeoData,
+		});
+
+		map.addLayer({
+			id: "markerPauk",
+			type: "symbol",
+			source: "markerPauk",
+			layout: {
+				"icon-image": "pauk-marker",
+				"icon-overlap": "always",
+			},
+		});
+	};
+
+	const zonaInfoContainer2 = document.createElement("div");
+	zonaInfoContainer2.className = "zona_container";
+	zonaInfoContainer2.id = 5;
+
+	zonaInfoContainer2.innerHTML = `
+			<div>
+				<img src="./icons/pauk.png" alt="pauk ikona" width="40px" height="40px"/>
+				<h3>Pauk služba</h3>
+			</div>
+			<div class="lokacija">
+				<p>Lokacija odlagališta vozila:</p>
+				<p>Marka Marulića 4</p>
+				<p>23000 Zadar, Hrvatska</p>
+				<p>(parkiralište RAVNICE nasuprot bolnice)</p>	
+			</div>
+			<div>
+				<p>Informacije o premještenim vozilima:</p>
+				<p>Tel: 023/302-100</p>
+			</div>
+			<div>
+				<p>Reklamacija o premještenim vozilima:</p>
+				<p>Obale i lučice d.o.o.</p>
+				<p>Medulićeva 2/II</p>
+			</div>
+			<div>
+				<p>Radno vrijeme:</p>
+				<p>PON - PET od 08:00 do 15:00 h</p>
+				<p>Email: info.pauk@oil.hr</p>
+			</div>
+			<div>
+				<img src="./icons/phone.svg" alt="mobitel ikona" width="40px" height="40px"/>
+				<p>023/312-297</p>
+			</div>`;
+
+	document.getElementById("map").appendChild(zonaInfoContainer2);
+
+	/*----------------------oil marker click functionality---------------*/
+	const oilGeoData = await fetchMarkerData("./data/aparati/oil.json");
+	console.log(oilGeoData);
+
+	const oilEl = document.createElement("img");
+	oilEl.src = "./icons/oil-marker.png";
+
+	oilEl.onload = () => {
+		map.addImage("oil-marker", oilEl);
+
+		// Add a data source containing one point feature.
+		map.addSource("markerOil", {
+			type: "geojson",
+			data: oilGeoData,
+		});
+
+		// Add a layer to use the image to represent the data.
+		map.addLayer({
+			id: "markerOil",
+			type: "symbol",
+			source: "markerOil",
+			layout: {
+				"icon-image": "oil-marker",
+				"icon-overlap": "always",
+			},
+		});
+	};
+
+	const zonaInfoContainer3 = document.createElement("div");
+	zonaInfoContainer3.className = "zona_container";
+	zonaInfoContainer3.id = 6;
+
+	zonaInfoContainer3.innerHTML = `
+			<div>
+				<h3>Obala i lučice</h3>
+			</div>
+			<div class="lokacija">
+				<p>"Obala i lučice" d.o.o.</p>
+				<p>Andrije Medulića 2</p>
+				<p>23000 Zadar - HR</p>
+			</div>
+			<div>
+				<p>Telefon +385 23 316 924</p>
+				<p>Fax +385 23 212 892</p>
+				<p>Pauk služba +385 23 302-100</p>
+			</div>
+			<div>
+				<a>info@oil.hr</a>
+				<p>www.oil.hr</p>
+			</div>
+			<div>
+				<img src="./icons/phone.svg" alt="mobitel ikona" width="40px" height="40px"/>
+				<p>023/316-924</p>
+			</div>
+		`;
+	document.getElementById("map").appendChild(zonaInfoContainer3);
 
 	/*--------------onClick functinality for zones---------------------*/
 	const zoneData = await fetchMarkerData("./data/zoneInfo/info.json");
@@ -300,6 +418,8 @@ async function init() {
 	map.on("click", "polygon-layer2", (e) => handlePolygonClick(e, 2));
 	map.on("click", "polygon-layer3", (e) => handlePolygonClick(e, 3));
 	map.on("click", "polygon-layer4", (e) => handlePolygonClick(e, 4));
+	map.on("click", "markerPauk", (e) => handlePolygonClick(e, 5));
+	map.on("click", "markerOil", (e) => handlePolygonClick(e, 6));
 
 	function handlePolygonClick(event, zoneId) {
 		console.log(event);
@@ -316,6 +436,36 @@ async function init() {
 			infoContainer.classList.toggle("active");
 		}
 	}
+	/*--------onClick functinality for oil and pauk marker------*/
+
+	/*-----------------adding sms info--------------------------*/
+	const messageInfo = document.createElement("div");
+	messageInfo.className = "sms_container";
+	messageInfo.innerHTML = `
+			<div class="message_info">
+				<img src="./icons/phone.svg" alt="mobitel ikona" width="40px" height="40px"/>
+				<p>SMS PARKING</p>
+			</div>
+			<div class="numbers_info">
+				<p>Pošaljite registraciju automobila na broj</p>
+				<ul>
+					<li>
+						ZONA 0 - 708239
+					</li>
+					<li>
+						ZONA 1 - 708231
+					</li>
+					<li>
+						ZONA 2 - 708232
+					</li>
+					<li>
+						ZONA 3 - 708233
+					</li>
+				</ul>
+			</div>
+		`;
+
+	document.getElementById("map").appendChild(messageInfo);
 }
 
 init();
