@@ -147,22 +147,55 @@ async function init() {
 		const data = await response.json();
 		return data;
 	}
-	const markerData = await fetchMarkerData("./data/aparati/automati.json");
-	// console.log(markerData.automati);
 
-	markerData.automati.forEach((marker) => {
-		// Create a new div for the marker (if custom styling is needed)
-		const el = document.createElement("img");
-		el.className = "sms_marker";
-		el.src = "./icons/car-park.svg";
-		el.style.width = "40px";
-		el.style.height = "40px";
-		el.style.color = "red";
+	const markerGeoData = await fetchMarkerData("./data/aparati/aparatiGeo.json");
+	console.log(markerGeoData);
+
+	const el = document.createElement("img");
+	el.src = "./icons/car-park.svg";
+	// el.className = "sms_marker";
+
+	el.onload = () => {
+		map.addImage("custom-marker", el);
+
+		// Add a data source containing one point feature.
+		map.addSource("markers", {
+			type: "geojson",
+			data: markerGeoData,
+		});
+
+		// Add a layer to use the image to represent the data.
+		map.addLayer({
+			id: "markers",
+			type: "symbol",
+			source: "markers",
+			layout: {
+				"icon-image": "custom-marker",
+				"icon-overlap": "always",
+				"icon-size": 0.025,
+			},
+		});
+	};
+
+	const popup = new maplibregl.Popup({
+		closeButton: false,
+		closeOnClick: false,
+	});
+
+	map.on("mouseenter", "markers", (e) => {
+		console.log(e);
+
+		// Change the cursor style as a UI indicator.
+		map.getCanvas().style.cursor = "pointer";
+
+		const coordinates = e.features[0].geometry.coordinates.slice();
+		const description = e.features[0].properties;
+		console.log(description);
 
 		let backgroundColor;
 		let textColor;
 
-		switch (marker.zone) {
+		switch (description.zone) {
 			case 1:
 				backgroundColor = "#0051ff";
 				break;
@@ -181,24 +214,30 @@ async function init() {
 				break;
 		}
 
-		// Create a popup for the marker
-		const popup = new maplibregl.Popup({ offset: 25 }).setHTML(
-			`<div class="custom-popup">
-			  <h4>${marker.place}</h4>
-			  <p>SMS parking: ${marker.SMS}</p>
-			  <div>
-			     <p style="background-color: ${backgroundColor}; color:${textColor}">ZONA ${marker.zone}</p>
-			 	 <p>Broj automata: <span>${marker.broj}</span></p>
-			  </div>	 
-			</div>
-			`
-		);
+		while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+			coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+		}
 
-		// Add the marker to the map
-		new maplibregl.Marker({ element: el })
-			.setLngLat(marker.coords)
-			.setPopup(popup)
+		// Populate the popup and set its coordinates
+		popup
+			.setLngLat(coordinates)
+			.setHTML(
+				`<div class="custom-popup">
+			 			  <h4>${description.place}</h4>
+			 			  <p>SMS parking: ${description.SMS}</p>
+			 			  <div>
+			 			     <p style="background-color: ${backgroundColor}; color:${textColor}">ZONA ${description.zone}</p>
+			 			 	 <p>Broj automata: <span>${description.broj}</span></p>
+			 			  </div>
+			 			</div>
+			 			`
+			)
 			.addTo(map);
+	});
+
+	map.on("mouseleave", "markers", () => {
+		map.getCanvas().style.cursor = "";
+		popup.remove();
 	});
 
 	/*--------------adding oil and pauk markers------------------------*/
@@ -263,12 +302,11 @@ async function init() {
 	map.on("click", "polygon-layer4", (e) => handlePolygonClick(e, 4));
 
 	function handlePolygonClick(event, zoneId) {
-		console.log(zoneId);
+		console.log(event);
 
 		const infoContainer = document.getElementById(zoneId);
 
 		const allInfoContainers = document.querySelectorAll(".zona_container");
-		console.log(allInfoContainers);
 
 		allInfoContainers.forEach((container) => {
 			if (+container.id !== +zoneId) container.classList.remove("active");
@@ -281,10 +319,3 @@ async function init() {
 }
 
 init();
-
-// const styleZoneMarker = () => {
-// 	const markers = document.querySelectorAll(".sms_marker");
-// 	const zones = document.querySelectorAll(".custom-popup");
-// 	// console.log(markers);
-// 	// console.log(zones);
-// };

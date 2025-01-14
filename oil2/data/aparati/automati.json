@@ -1,0 +1,291 @@
+{
+	"automati": [
+		{
+			"coords": [15.222297479441469, 44.11766205459369],
+			"zone": 2,
+			"place": "Trg tri bunara",
+			"broj": "002",
+			"SMS": 708232
+		},
+		{
+			"coords": [15.22238867454827, 44.11594247830005],
+			"zone": 2,
+			"place": "Zadarskog mira",
+			"broj": "006",
+			"SMS": 708232
+		},
+		{
+			"coords": [15.22377269437392, 44.114898769284714],
+			"zone": 2,
+			"place": "Zadarskog mira 2",
+			"broj": "002",
+			"SMS": 708232
+		},
+		{
+			"coords": [15.224416084804448, 44.11512934884512],
+			"zone": 2,
+			"place": "Sv. Marija",
+			"broj": "019",
+			"SMS": 708232
+		},
+		{
+			"coords": [15.224878693836285, 44.11358223265207],
+			"zone": 2,
+			"place": "Hotel Zagreb",
+			"broj": "012",
+			"SMS": 708232
+		},
+		{
+			"coords": [15.225357974845283, 44.11281829997302],
+			"zone": 2,
+			"place": "Ulica Mihovila Pavlinovića",
+			"broj": "026",
+			"SMS": 708232
+		},
+		{
+			"coords": [15.226682602071495, 44.11201986604921],
+			"zone": 2,
+			"place": "Sirac",
+			"broj": "009",
+			"SMS": 708232
+		},
+		{
+			"coords": [15.223725658684476, 44.11761426092226],
+			"zone": 2,
+			"place": "Bedemi",
+			"broj": "010",
+			"SMS": 708232
+		},
+		{
+			"coords": [15.224774447548537, 44.11783447476655],
+			"zone": 1,
+			"place": "Liburnska obala",
+			"broj": "036",
+			"SMS": 708231
+		},
+		{
+			"coords": [15.225230050432272, 44.117717891069326],
+			"zone": 1,
+			"place": "Liburnska obala",
+			"broj": "031",
+			"SMS": 708231
+		},
+		{
+			"coords": [15.225748806205615, 44.11746367304147],
+			"zone": 1,
+			"place": "Liburnska obala",
+			"broj": "042",
+			"SMS": 708231
+		},
+		{
+			"coords": [15.225455596428954, 44.11736975782515],
+			"zone": 2,
+			"place": "Plankit",
+			"broj": "020",
+			"SMS": 708232
+		},
+		{
+			"coords": [15.226697037940163, 44.11701095186507],
+			"zone": 1,
+			"place": "Liburnska obala",
+			"broj": "041",
+			"SMS": 708231
+		},
+		{
+			"coords": [15.227406541539905, 44.11640402593437],
+			"zone": 1,
+			"place": "Ribarnica",
+			"broj": "017",
+			"SMS": 708231
+		},
+		{
+			"coords": [15.228471976060407, 44.11552192335199],
+			"zone": 1,
+			"place": "Liburnska obala - 2",
+			"broj": "011",
+			"SMS": 708231
+		},
+		{
+			"coords": [15.229041946788753, 44.115129739338514],
+			"zone": 1,
+			"place": "Most - Istok",
+			"broj": "016",
+			"SMS": 708231
+		},
+		{
+			"coords": [15.230306369872523, 44.11415659557942],
+			"zone": 1,
+			"place": "obala kr. Tomislava - 2",
+			"broj": "028",
+			"SMS": 708231
+		},
+		{
+			"coords": [15.229283769031102, 44.11374511934255],
+			"zone": 2,
+			"place": "N. list - stratico",
+			"broj": "007",
+			"SMS": 708232
+		},
+		{
+			"coords": [15.230284876092337, 44.11356050492848],
+			"zone": 2,
+			"place": "Ul. N. lista / Šime Vitasovića",
+			"broj": "025",
+			"SMS": 708232
+		},
+		{
+			"coords": [15.230987571391147, 44.113415839883984],
+			"zone": 1,
+			"place": "Obala kralja Tomislava",
+			"broj": "015",
+			"SMS": 708231
+		},
+		{
+			"coords": [15.230987571391147, 44.113415839883984],
+			"zone": 1,
+			"place": "Obala kralja Tomislava",
+			"broj": "015",
+			"SMS": 708231
+		},
+		{
+			"coords": [15.23118337263837, 44.11318956644864],
+			"zone": 1,
+			"place": "Obala kralja Tomislava - 3",
+			"broj": "032",
+			"SMS": 708231
+		},
+		{
+			"coords": [15.23081188670655, 44.11279575231503],
+			"zone": 2,
+			"place": "Bartola Kašića",
+			"broj": "027",
+			"SMS": 708232
+		},
+		{
+			"coords": [15.230071597044626, 44.11270139059163],
+			"zone": 2,
+			"place": "Ulica Krešimira Ćosića - 2",
+			"broj": "008",
+			"SMS": 708232
+		},
+		{
+			"coords": [15.23025192080483, 44.11191901639376],
+			"zone": 2,
+			"place": "Ulica Krešimira Ćosića - 3",
+			"broj": "018",
+			"SMS": 708232
+		},
+		{
+			"coords": [15.22883098111794, 44.11193844893273],
+			"zone": 2,
+			"place": "Kopnena vrata",
+			"broj": "044",
+			"SMS": 708232
+		},
+		{
+			"coords": [15.232299593155183, 44.1109316370491],
+			"zone": 4,
+			"place": "Ravnice",
+			"broj": "004",
+			"SMS": ""
+		},
+		{
+			"coords": [15.231365010508009, 44.110578947457476],
+			"zone": 4,
+			"place": "Ravnice",
+			"broj": "038",
+			"SMS": ""
+		},
+		{
+			"coords": [15.228253181182565, 44.110980084480154],
+			"zone": 2,
+			"place": "Foša",
+			"broj": "001",
+			"SMS": "708232"
+		},
+		{
+			"coords": [15.229138897178244, 44.11024609600264],
+			"zone": 2,
+			"place": "Dmitra Zvonimira",
+			"broj": "013",
+			"SMS": "708232"
+		},
+		{
+			"coords": [15.229911576170089, 44.10954729960735],
+			"zone": 2,
+			"place": "Dmitra Zvonimira",
+			"broj": "040",
+			"SMS": "708232"
+		},
+		{
+			"coords": [15.235447004154501, 44.11082501970861],
+			"zone": 3,
+			"place": "Trg Kneza Višeslava",
+			"broj": "037",
+			"SMS": "708233"
+		},
+		{
+			"coords": [15.23456345670553, 44.111889948229674],
+			"zone": 3,
+			"place": "Branimirova obala",
+			"broj": "035",
+			"SMS": "708233"
+		},
+		{
+			"coords": [15.233591365620056, 44.11297635382425],
+			"zone": 3,
+			"place": "Branimirova obala",
+			"broj": "034",
+			"SMS": "708233"
+		},
+		{
+			"coords": [15.233136365203972, 44.113723510303075],
+			"zone": 2,
+			"place": "Branimirova obala",
+			"broj": "039",
+			"SMS": "708232"
+		},
+		{
+			"coords": [15.233006654372302, 44.114596518346325],
+			"zone": 2,
+			"place": "Branimirova obala",
+			"broj": "039",
+			"SMS": "708232"
+		},
+		{
+			"coords": [15.23305027635809, 44.114582901665834],
+			"zone": 2,
+			"place": "Branimirova obala",
+			"broj": "005",
+			"SMS": "708232"
+		},
+		{
+			"coords": [15.23174540993356, 44.11520654242877],
+			"zone": 2,
+			"place": "Obala k. Branimira",
+			"broj": "023",
+			"SMS": "708232"
+		},
+		{
+			"coords": [15.231301603604745, 44.115737585047405],
+			"zone": 2,
+			"place": "Obala k. Branimira",
+			"broj": "030",
+			"SMS": "708232"
+		},
+		{
+			"coords": [15.23010664564155, 44.11695835852392],
+			"zone": 2,
+			"place": "Branimirova obala",
+			"broj": "024",
+			"SMS": "708232"
+		},
+		{
+			"coords": [44.117810474837164, 15.229060704919714],
+			"zone": 2,
+			"place": "Branimirova obala",
+			"broj": "033",
+			"SMS": "708232"
+		}
+	]
+}

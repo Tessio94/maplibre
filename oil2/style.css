@@ -200,3 +200,10 @@
 .active {
 	display: block;
 }
+
+/* ----------------allowing hover instead of clikc------------ */
+#pauk,
+#oil,
+.sms_marker {
+	pointer-events: none;
+}
