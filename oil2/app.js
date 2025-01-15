@@ -446,6 +446,9 @@ async function init() {
 	const messageInfo = document.createElement("div");
 	messageInfo.className = "sms_container";
 	messageInfo.innerHTML = `
+			<div class="option3D">
+				<img class="dimension_icon" src="./icons/3d_icon.svg" alt="mobitel ikona" width="40px" height="40px"/>
+			</div>
 			<div class="message_info">
 				<img src="./icons/phone.svg" alt="mobitel ikona" width="40px" height="40px"/>
 				<p>SMS PARKING</p>
@@ -501,6 +504,24 @@ async function init() {
 			map.setLayoutProperty(layerId, "visibility", "none");
 		}
 	}
+
+	/*---------------------------add 3D functionality----------------- */
+	const option3D = document.querySelector(".option3D");
+	const dimensionIcon = document.querySelector(".dimension_icon");
+	let option = false;
+
+	option3D.addEventListener("click", () => {
+		option = !option;
+		if (option) {
+			map.setPitch(60);
+			map.setBearing(30);
+			dimensionIcon.src = "./icons/2d_icon.svg";
+		} else {
+			map.setPitch(0);
+			map.setBearing(0);
+			dimensionIcon.src = "./icons/3d_icon.svg";
+		}
+	});
 }
 
 init();
