@@ -20,6 +20,8 @@ async function init() {
 		})
 	);
 
+	map.doubleClickZoom.disable();
+
 	/*----------------------fetching polygon json data...............*/
 	async function fetchData(path) {
 		const response = await fetch(path);
@@ -149,7 +151,7 @@ async function init() {
 	}
 
 	const markerGeoData = await fetchMarkerData("./data/aparati/aparatiGeo.json");
-	console.log(markerGeoData);
+	// console.log(markerGeoData);
 
 	const el = document.createElement("img");
 	el.src = "./icons/car-park.svg";
@@ -183,14 +185,14 @@ async function init() {
 	});
 
 	map.on("mouseenter", "markers", (e) => {
-		console.log(e);
+		// console.log(e);
 
 		// Change the cursor style as a UI indicator.
 		map.getCanvas().style.cursor = "pointer";
 
 		const coordinates = e.features[0].geometry.coordinates.slice();
 		const description = e.features[0].properties;
-		console.log(description);
+		// console.log(description);
 
 		let backgroundColor;
 		let textColor;
@@ -276,11 +278,11 @@ async function init() {
 
 	const zonaInfoContainer2 = document.createElement("div");
 	zonaInfoContainer2.className = "zona_container";
-	zonaInfoContainer2.id = 5;
+	zonaInfoContainer2.dataset.value = 5;
 
 	zonaInfoContainer2.innerHTML = `
 			<div>
-				<img src="./icons/pauk.png" alt="pauk ikona" width="40px" height="40px"/>
+				<img src="./icons/pauk.png" alt="pauk ikona" width="50px" height="23px"/>
 				<h3>Pauk služba</h3>
 			</div>
 			<div class="lokacija">
@@ -301,7 +303,7 @@ async function init() {
 			<div>
 				<p>Radno vrijeme:</p>
 				<p>PON - PET od 08:00 do 15:00 h</p>
-				<p>Email: info.pauk@oil.hr</p>
+				<p>Email: <a href="https://info.pauk@oil.hr">info.pauk@oil.hr</a></p>
 			</div>
 			<div>
 				<img src="./icons/phone.svg" alt="mobitel ikona" width="40px" height="40px"/>
@@ -312,7 +314,7 @@ async function init() {
 
 	/*----------------------oil marker click functionality---------------*/
 	const oilGeoData = await fetchMarkerData("./data/aparati/oil.json");
-	console.log(oilGeoData);
+	// console.log(oilGeoData);
 
 	const oilEl = document.createElement("img");
 	oilEl.src = "./icons/oil-marker.png";
@@ -340,7 +342,7 @@ async function init() {
 
 	const zonaInfoContainer3 = document.createElement("div");
 	zonaInfoContainer3.className = "zona_container";
-	zonaInfoContainer3.id = 6;
+	zonaInfoContainer3.dataset.value = 6;
 
 	zonaInfoContainer3.innerHTML = `
 			<div>
@@ -357,8 +359,8 @@ async function init() {
 				<p>Pauk služba +385 23 302-100</p>
 			</div>
 			<div>
-				<a>info@oil.hr</a>
-				<p>www.oil.hr</p>
+				<a href="https://indfo@oil.hr" target="_blank">info@oil.hr</a>
+				<a href="https://www.oil.hr" target="_blank">www.oil.hr</a>
 			</div>
 			<div>
 				<img src="./icons/phone.svg" alt="mobitel ikona" width="40px" height="40px"/>
@@ -372,7 +374,7 @@ async function init() {
 	zoneData.informacije.forEach((zona) => {
 		const zonaInfoContainer = document.createElement("div");
 		zonaInfoContainer.className = "zona_container";
-		zonaInfoContainer.id = +zona.zona;
+		zonaInfoContainer.dataset.value = +zona.zona;
 		zonaInfoContainer.innerHTML = `
 			<div style="background-color: ${zona.backgroundColor}; color: ${
 			zona.textColor
@@ -424,12 +426,15 @@ async function init() {
 	function handlePolygonClick(event, zoneId) {
 		console.log(event);
 
-		const infoContainer = document.getElementById(zoneId);
+		const infoContainer = document.querySelector(`[data-value="${zoneId}"]`);
 
 		const allInfoContainers = document.querySelectorAll(".zona_container");
 
 		allInfoContainers.forEach((container) => {
-			if (+container.id !== +zoneId) container.classList.remove("active");
+			console.log(+container.dataset.value);
+
+			if (+container.dataset.value !== +zoneId)
+				container.classList.remove("active");
 		});
 
 		if (infoContainer) {
