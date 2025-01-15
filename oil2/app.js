@@ -1,4 +1,4 @@
-const middleOfMap = [15.22853958963751, 44.114604353630114];
+const middleOfMap = [15.22853958963751, 44.113604353630114];
 
 const oil = document.querySelector("#oil");
 const pauk = document.querySelector("#pauk");
@@ -441,7 +441,6 @@ async function init() {
 			infoContainer.classList.toggle("active");
 		}
 	}
-	/*--------onClick functinality for oil and pauk marker------*/
 
 	/*-----------------adding sms info--------------------------*/
 	const messageInfo = document.createElement("div");
@@ -471,6 +470,37 @@ async function init() {
 		`;
 
 	document.getElementById("map").appendChild(messageInfo);
+
+	/*------------------adding onCLick removal of all markers------*/
+	const toggleMarkersButton = document.querySelector("#toggleMarkers");
+	const togglePaukButton = document.querySelector("#togglePauk");
+	const toggleOilButton = document.querySelector("#toggleOil");
+
+	let markersVisible = true;
+	let paukVisible = true;
+	let oilVisible = true;
+
+	toggleMarkersButton.addEventListener("click", () => {
+		markersVisible = !markersVisible;
+		toggleLayerVisibility("markers", markersVisible);
+	});
+	togglePaukButton.addEventListener("click", () => {
+		paukVisible = !paukVisible;
+		toggleLayerVisibility("markerPauk", paukVisible);
+	});
+
+	toggleOilButton.addEventListener("click", () => {
+		oilVisible = !oilVisible;
+		toggleLayerVisibility("markerOil", oilVisible);
+	});
+
+	function toggleLayerVisibility(layerId, visible) {
+		if (visible) {
+			map.setLayoutProperty(layerId, "visibility", "visible");
+		} else {
+			map.setLayoutProperty(layerId, "visibility", "none");
+		}
+	}
 }
 
 init();
