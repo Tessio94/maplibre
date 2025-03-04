@@ -15,50 +15,112 @@ async function init() {
 		container: "map",
 	});
 
-	const popupZem = new maplibregl.Popup({ offset: 25 }).setText(
-		"Zračna luka Zemunik"
-	);
-	const popupGaz = new maplibregl.Popup({ offset: 25 }).setText(
-		"Trajektna luka Gaženica"
-	);
-	const popupKol = new maplibregl.Popup({ offset: 25 }).setText(
-		"Autobusni kolodvor Zadar"
-	);
-	const popupGrad = new maplibregl.Popup({ offset: 25 }).setText(
-		"Poluotok centar (liburnska obala)"
+	map.addControl(
+		new maplibregl.NavigationControl({
+			visualizePitch: true,
+			visualizeRoll: true,
+			showZoom: true,
+			showCompass: true,
+		})
 	);
 
-	new maplibregl.Marker({
-		element: lukaZem,
-		closeOnClick: false,
-	})
-		.setLngLat([15.353344939653262, 44.09665237319331])
-		.setPopup(popupZem)
-		.addTo(map);
+	map.doubleClickZoom.disable();
 
-	new maplibregl.Marker({
-		element: lukaGaz,
-		closeOnClick: false,
-	})
-		.setLngLat([15.270712779514954, 44.08849648128898])
-		.setPopup(popupGaz)
-		.addTo(map);
+	const popups = {
+		lukaZem: new maplibregl.Popup({ offset: 25, closeButton: false }).setHTML(
+			`<div class="custom-popup">
+				<h4>Zračna luka Zemunik</h4>
+				<p>Ulica I 2A, 23222, Zemunik Donji</p>
+			</div>`
+		),
+		lukaGaz: new maplibregl.Popup({ offset: 25, closeButton: false }).setHTML(
+			`<div class="custom-popup">
+				<h4>Trajektna luka Gaženica</h4>
+				<p>Gaženička cesta, 23000, Zadar</p>
+			</div>`
+		),
+		autoBus: new maplibregl.Popup({ offset: 25, closeButton: false }).setHTML(
+			`<div class="custom-popup">
+				<h4>Autobusni kolodvor Zadar</h4>
+				<p>Autobusni kolodvor Zadar, 23000, Zadar</p>
+			</div>`
+		),
+		gradBus: new maplibregl.Popup({ offset: 25, closeButton: false }).setHTML(
+			`<div class="custom-popup">
+				<h4>Poluotok centar</h4>
+				<p>Liburnska obala 4, 23000, Zadar</p>
+			</div>`
+		),
+	};
 
-	new maplibregl.Marker({
-		element: autoBus,
-		closeOnClick: false,
-	})
-		.setLngLat([15.240751283830972, 44.10652063216309])
-		.setPopup(popupKol)
-		.addTo(map);
+	const markers = [
+		{
+			element: lukaZem,
+			coordinates: [15.353344939653262, 44.09665237319331],
+			popup: popups.lukaZem,
+		},
+		{
+			element: lukaGaz,
+			coordinates: [15.25806, 44.09609],
+			popup: popups.lukaGaz,
+		},
+		{
+			element: autoBus,
+			coordinates: [15.240751283830972, 44.10652063216309],
+			popup: popups.autoBus,
+		},
+		{
+			element: gradBus,
+			coordinates: [15.226058939654232, 44.11748961647949],
+			popup: popups.gradBus,
+		},
+	];
 
-	new maplibregl.Marker({
-		element: gradBus,
-		closeOnClick: false,
-	})
-		.setLngLat([15.226058939654232, 44.11748961647949])
-		.setPopup(popupGrad)
-		.addTo(map);
+	markers.forEach(({ element, coordinates, popup }) => {
+		const marker = new maplibregl.Marker({ element, closeOnClick: false })
+			.setLngLat(coordinates)
+			.addTo(map);
+
+		element.addEventListener("mouseenter", () => {
+			popup.setLngLat(coordinates).addTo(map);
+		});
+
+		element.addEventListener("mouseleave", () => {
+			popup.remove();
+		});
+	});
+
+	const routeCoordinates = markers.map(({ coordinates }) => coordinates);
+	const data = await fetch("./data/ruta.json").then((res) => res.json());
+
+	console.log(data.ruta);
+
+	map.on("load", () => {
+		map.addSource("route", {
+			type: "geojson",
+			data: {
+				type: "Feature",
+				geometry: {
+					type: "LineString",
+					coordinates: data.ruta,
+				},
+			},
+		});
+
+		map.addLayer({
+			id: "route",
+			type: "line",
+			source: "route",
+			layout: {
+				"line-join": "round",
+				"line-cap": "round",
+			},
+			paint: {
+				"line-color": "#007bff",
+				"line-width": 4,
+			},
+		});
+	});
 }
 
 init();

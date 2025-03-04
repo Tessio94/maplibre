@@ -371,6 +371,8 @@ async function init() {
 
 	/*--------------onClick functinality for zones---------------------*/
 	const zoneData = await fetchMarkerData("./data/zoneInfo/info.json");
+	console.log(zoneData);
+
 	zoneData.informacije.forEach((zona) => {
 		const zonaInfoContainer = document.createElement("div");
 		zonaInfoContainer.className = "zona_container";

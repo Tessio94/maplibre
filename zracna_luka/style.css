@@ -1,24 +1,57 @@
-#markerZem {
-	background-image: url("./additional/icons/plane.png");
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+.marker {
 	background-size: cover;
-	width: 50px;
-	height: 50px;
+	width: 26px;
+	height: 37px;
 	cursor: pointer;
+	border-radius: 50%;
+}
+
+#markerZem {
+	background-image: url("./icons/marker_redD.png");
 }
 
 #markerGaz {
-	background-image: url("./additional/icons/anchor.png");
-	background-size: cover;
-	width: 50px;
-	height: 50px;
+	background-image: url("./icons/marker_redC.png");
 }
 
-#markerBus1,
+#markerBus1 {
+	background-image: url("./icons/marker_redB.png");
+}
+
 #markerBus2 {
-	background-image: url("./additional/icons/bus.png");
-	background-size: cover;
-	width: 50px;
-	height: 50px;
-	border-radius: 50%;
-	cursor: pointer;
+	background-image: url("./icons/marker_redA.png");
+}
+
+.custom-popup {
+	background-color: #133a82;
+	color: #ffffff;
+	padding: 10px;
+	border-radius: 10px;
+}
+.custom-popup h4 {
+	font-size: 14px;
+}
+
+.maplibregl-popup-content {
+	padding: 0px !important;
+	border-radius: 10px !important;
+}
+
+.maplibregl-popup-anchor-right .maplibregl-popup-tip {
+	border-left-color: #133a82 !important;
+}
+.maplibregl-popup-anchor-left .maplibregl-popup-tip {
+	border-right-color: #133a82 !important;
+}
+.maplibregl-popup-anchor-bottom .maplibregl-popup-tip {
+	border-top-color: #133a82 !important;
+}
+.maplibregl-popup-anchor-top .maplibregl-popup-tip {
+	border-bottom-color: #133a82 !important;
 }
