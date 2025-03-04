@@ -5,3 +5,6 @@ te openfreemap (besplatna upotreba karte napravljena od openstreetmap podataka).
 
 
 OIL 2 - testiranje različitih mogućnosti (hover preko markera itd.)
+
+
+Zracna luka - dodavanje markera i rute za zračnu luku Zadar
