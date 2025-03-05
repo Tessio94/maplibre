@@ -7,6 +7,9 @@ const gradBus = document.getElementById("markerBus2");
 
 const middleOfMap = [15.293044345450978, 44.11082841934155];
 
+// satelite tiles
+// https://api.maptiler.com/maps/hybrid/style.json?key=get_your_own_OpIi9ZULNHzrESv6T2vL
+
 async function init() {
 	const map = new maplibregl.Map({
 		style: "https://tiles.openfreemap.org/styles/liberty",
@@ -14,6 +17,8 @@ async function init() {
 		zoom: 12,
 		container: "map",
 	});
+
+	console.log(map);
 
 	map.addControl(
 		new maplibregl.NavigationControl({
@@ -23,6 +28,8 @@ async function init() {
 			showCompass: true,
 		})
 	);
+
+	map.addControl(new maplibregl.FullscreenControl());
 
 	map.doubleClickZoom.disable();
 
@@ -90,7 +97,7 @@ async function init() {
 		});
 	});
 
-	const routeCoordinates = markers.map(({ coordinates }) => coordinates);
+	// const routeCoordinates = markers.map(({ coordinates }) => coordinates);
 	const data = await fetch("./data/ruta.json").then((res) => res.json());
 
 	console.log(data.ruta);
@@ -121,6 +128,66 @@ async function init() {
 			},
 		});
 	});
+
+	/*--------------------------3D------------------------*/
+	const optionsInfo = document.createElement("div");
+	optionsInfo.className = "options_container";
+	optionsInfo.innerHTML = `
+			<div class="option3D">
+				<img class="dimension_icon" src="./icons/3d_icon.svg" alt="mobitel ikona" width="40px" height="40px"/>
+			</div>
+		`;
+
+	// <div class="satellite_img">
+	// 	<img class="satellite_tiles" src="./icons/satelit_tiles.png" alt="mobitel ikona"/>
+	// </div>
+
+	document.getElementById("map").appendChild(optionsInfo);
+
+	const option3D = document.querySelector(".option3D");
+	const dimensionIcon = document.querySelector(".dimension_icon");
+	// const tiles = document.querySelector(".satellite_tiles");
+	let option = false;
+	// let satellite = false;
+
+	option3D.addEventListener("click", () => {
+		option = !option;
+		// const currentZoom = map.getZoom();
+
+		if (option) {
+			map.easeTo({
+				pitch: 60,
+				bearing: 30,
+				// zoom: currentZoom + 1,
+				duration: 1000,
+				easing: (t) => t,
+			});
+			dimensionIcon.src = "./icons/2d_icon.svg";
+		} else {
+			map.easeTo({
+				pitch: 0,
+				bearing: 0,
+				// zoom: currentZoom - 1,
+				duration: 1000,
+				easing: (t) => t,
+			});
+			dimensionIcon.src = "./icons/3d_icon.svg";
+		}
+	});
+
+	// tiles.addEventListener("click", () => {
+	// 	satellite = !satellite;
+
+	// 	if (satellite) {
+	// 		map.setStyle(
+	// 			"https://api.maptiler.com/maps/hybrid/style.json?key=get_your_own_OpIi9ZULNHzrESv6T2vL"
+	// 		);
+	// 		tiles.src = "./icons/mapa_tiles.png";
+	// 	} else {
+	// 		map.setStyle("https://tiles.openfreemap.org/styles/liberty");
+	// 		tiles.src = "./icons/satelit_tiles.png";
+	// 	}
+	// });
 }
 
 init();
