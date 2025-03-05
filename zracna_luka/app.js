@@ -18,8 +18,6 @@ async function init() {
 		container: "map",
 	});
 
-	console.log(map);
-
 	map.addControl(
 		new maplibregl.NavigationControl({
 			visualizePitch: true,
@@ -63,22 +61,22 @@ async function init() {
 	const markers = [
 		{
 			element: lukaZem,
-			coordinates: [15.353344939653262, 44.09665237319331],
+			coordinates: [15.352865042164943, 44.09716459347505],
 			popup: popups.lukaZem,
 		},
 		{
 			element: lukaGaz,
-			coordinates: [15.25806, 44.09609],
+			coordinates: [15.25908, 44.09509],
 			popup: popups.lukaGaz,
 		},
 		{
 			element: autoBus,
-			coordinates: [15.240751283830972, 44.10652063216309],
+			coordinates: [15.241366820345892, 44.10626536941681],
 			popup: popups.autoBus,
 		},
 		{
 			element: gradBus,
-			coordinates: [15.226058939654232, 44.11748961647949],
+			coordinates: [15.226500262805441, 44.11697040540381],
 			popup: popups.gradBus,
 		},
 	];
